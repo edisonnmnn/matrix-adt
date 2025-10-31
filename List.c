@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include "List.h"
 
-// private structs, functions, and constatns
+// private structs, functions, and constants
 
 // initialSize for elements array
 // Might not need at all because linked lists are dynamic anyways

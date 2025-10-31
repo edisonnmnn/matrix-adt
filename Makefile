@@ -30,7 +30,7 @@ ADT2_H         = $(ADT2).h
 COMPILE        = gcc -std=c17 -Wall -c
 LINK           = gcc -std=c17 -Wall -o
 REMOVE         = rm -f
-MEMCHECK       = valgrind --leak-check=full
+MEMCHECK       = valgrind --leak-check=full #CHANGE THIS IN THE ACTUAL MAKEFILE
 INFILE         = in8
 OUTFILE        = myout8
 
@@ -57,10 +57,12 @@ clean :
 	$(REMOVE) $(MAIN) $(MAINOBJ) $(TEST) $(TESTOBJ) $(ADT1OBJ) $(ADT2OBJ)
 
 check$(MAIN) : $(MAIN)
-	$(MEMCHECK) $(MAIN) $(INFILE) $(OUTFILE)
+	$(LINK) $(MAIN) $(MAINOBJ) $(ADT1OBJ) $(ADT2OBJ) -fsanitize=address -g
+	./$(MAIN) $(INFILE) $(OUTFILE)
 
 check$(TEST) : $(TEST)
-	$(MEMCHECK) $(TEST)
+	$(LINK) $(TEST) $(TESTOBJ) $(ADT1OBJ) $(ADT2OBJ) -fsanitize=address -g
+	./$(TEST)
 
 
 

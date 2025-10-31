@@ -4,3 +4,7 @@
 
 // Sparse.c
 // Main program for matrix operations on Sparse Matrices
+
+int main(void) {
+    return 1;
+}

@@ -13,6 +13,7 @@
 #define FORMAT "%p"  // format specifier for ListElement
 
 // Exported-Types -------------------------------------------------------------
+
 typedef void* ListElement;
 typedef struct ListObj* List;
 
@@ -48,11 +49,6 @@ ListElement back(List L);
 // get()
 // Returns cursor element. Pre: length()>0, position()>=0
 ListElement get(List L);
-
-// equals()
-// Returns true if A and B are the same integer sequence, false otherwise. The
-// cursor is not altered in either List.
-bool equals(List A, List B);
 
 // isEmpty()
 // Returns true if Q is empty, otherwise returns false.
@@ -121,17 +117,6 @@ void deleteBack(List L);
 void delete(List L);
 
 // Other operations -----------------------------------------------------------
-
-// printList()
-// Prints a string representation of L consisting of a space separated sequence
-// of integers, with front on left, to the stream pointed to by out.
-void printList(FILE* out, List L);
-
-// copyList()
-// Returns a new List representing the same integer sequence as L. The cursor
-// in the new list is undefined, regardless of the state of the cursor in L. The
-// List L is unchanged.
-List copyList(List L);
 
 // join()
 // Returns the concatenation of A followed by B. The cursor in the new List is

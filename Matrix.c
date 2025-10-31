@@ -20,7 +20,7 @@ typedef struct Entry {
 } Entry;
 
 typedef struct MatrixObj {
-    List** row;
+    List* row;
     int size;
     int nnz; // number of nonzero elements
 } MatrixObj;
@@ -30,12 +30,39 @@ typedef struct MatrixObj {
 
 // newMatrix()
 // Returns a reference to a new n by n Matrix in the zero state.
-Matrix newMatrix(int n);
+Matrix newMatrix(int n) {
+    Matrix M;
+
+    M = malloc(sizeof(MatrixObj));
+    assert (M != NULL);
+
+    // Rows are pointer to an array of pointers to ListObj
+    M->row = calloc(n + 1, sizeof(List));
+    assert(M->row != NULL);
+
+    for (int i = 1; i <= n; i++) {
+        M->row[i] = newList(); // List remains empty because entries are zero
+    }
+
+    M->size = n;
+    M->nnz = 0;
+    return M;
+}
 
 
 // freeMatrix()
 // Frees all heap memory associated with *pM, sets *pM to NULL.
-void freeMatrix(Matrix* pM);
+void freeMatrix(Matrix* pM) {
+    if (pM != NULL && *pM != NULL) {
+        for (int i = 1; i <= ((*pM)->size); i++ ){
+            freeList(&((*pM)->row[i]));
+        }
+        
+        free((*pM)->row);
+        free(*pM);
+        *pM = NULL;
+    }
+}
 
 // Access functions -----------------------------------------------------------
 
