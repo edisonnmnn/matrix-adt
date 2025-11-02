@@ -175,7 +175,7 @@ void changeEntry(Matrix M, int i, int j, double x) {
          fprintf(stderr, "Matrix Error: changeEntry(): Column %d is out of bounds: 1<=j<=dimension(M)\n ", j);       
     }
     
-    if (isEmpty(M->row[i])) {
+    if (isEmptyList(M->row[i])) {
         for (moveFront(M->row[i]); position(M->row[i]) <= 0; moveNext(M->row[i])) {
             Entry *E = get(M->row[i]);
             if (E->column > j) {
@@ -257,7 +257,7 @@ void printMatrix(FILE* out, Matrix M) {
     // row: (col, val)
     for (int i = 1; i <= dimension(M); i++) {
         List list_M = (M->row[i]);
-        if (!isEmpty(list_M)) {
+        if (!isEmptyList(list_M)) {
             fprintf(out, "%d: ", i);   
             for (moveFront(list_M); position(list_M) >= 0; moveNext(list_M)) {
                 Entry *E = get(list_M);

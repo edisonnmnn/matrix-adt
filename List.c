@@ -71,7 +71,7 @@ List newList() {
 // Frees heap memory associated with *pL, sets *pL to NULL.
 void freeList(List* pL) {
     if (pL != NULL && *pL != NULL) {
-        while (!isEmpty(*pL)) {
+        while (!isEmptyList(*pL)) {
             deleteFront(*pL); 
         }
         free(*pL);
@@ -162,11 +162,11 @@ ListElement get(List L) {
 }
 
 
-// isEmpty()
+// isEmptyList()
 // Returns true if L is empty, otherwise returns false.
-bool isEmpty(List L) {
+bool isEmptyList(List L) {
     if (L == NULL) {
-        fprintf(stderr, "List Error: isEmpty(): NULL List Reference\n");
+        fprintf(stderr, "List Error: isEmptyList(): NULL List Reference\n");
         exit(EXIT_FAILURE);
     }
 
@@ -183,7 +183,7 @@ void clear(List L) {
         exit(EXIT_FAILURE);
     }
 
-    while (!isEmpty(L)) {
+    while (!isEmptyList(L)) {
         deleteFront(L);
     }
 
@@ -221,7 +221,7 @@ void moveFront(List L) {
         exit(EXIT_FAILURE);
     }
 
-    if (!isEmpty(L)) {
+    if (!isEmptyList(L)) {
         L->cursor = L->front;
         L->position = 0;
     }
@@ -236,7 +236,7 @@ void moveBack(List L) {
         exit(EXIT_FAILURE);
     }
 
-    if (!isEmpty(L)) {
+    if (!isEmptyList(L)) {
         L->cursor = L->back;
         L->position = (L->length - 1);
     }
@@ -297,7 +297,7 @@ void prepend(List L, ListElement data) {
 
     Node* N = newNode(data, NULL, L->front);
 
-    if (!isEmpty(L)) {
+    if (!isEmptyList(L)) {
         L->front->prev = N;
         L->front = N;
     } else {
@@ -322,7 +322,7 @@ void append(List L, ListElement data) {
 
     Node* N = newNode(data, L->back, NULL);
 
-    if (!isEmpty(L)) {
+    if (!isEmptyList(L)) {
         L->back->next = N;
         L->back = N;
     } else {

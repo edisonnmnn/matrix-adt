@@ -50,9 +50,9 @@ ListElement back(List L);
 // Returns cursor element. Pre: length()>0, position()>=0
 ListElement get(List L);
 
-// isEmpty()
-// Returns true if Q is empty, otherwise returns false.
-bool isEmpty(List L);
+// isEmptyList()
+// Returns true if L is empty, otherwise returns false.
+bool isEmptyList(List L);
 
 // Manipulation procedures ----------------------------------------------------
 
