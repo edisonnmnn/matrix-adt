@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 
     // Read a entries for matrix A
     for (int i = 0; i < a; i++) {
-        fscanf(in, "%d %d %f", &row, &col, &value);
+        fscanf(in, "%d %d %lf", &row, &col, &value);
         changeEntry(A, row, col, value);
     }
 
@@ -54,11 +54,10 @@ int main(int argc, char* argv[]) {
 
     // Read b entries for matrix B
     for (int i = 0; i < b; i++) {
-        fscanf(in, "%d %d %f", &row, &col, &value);
+        fscanf(in, "%d %d %lf", &row, &col, &value);
         changeEntry(B, row, col, value);
     }
 
-    // Close input file
     fclose(in);
 
     fprintf(out, "A has %d non-zero entries:\n", numNonZero(A));
