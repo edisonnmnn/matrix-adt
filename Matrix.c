@@ -175,7 +175,7 @@ void changeEntry(Matrix M, int i, int j, double x) {
          fprintf(stderr, "Matrix Error: changeEntry(): Column %d is out of bounds: 1<=j<=dimension(M)\n ", j);       
     }
     
-    if (isEmptyList(M->row[i])) {
+    if (!(isEmptyList(M->row[i]))) {
         for (moveFront(M->row[i]); position(M->row[i]) <= 0; moveNext(M->row[i])) {
             Entry *E = get(M->row[i]);
             if (E->column > j) {
